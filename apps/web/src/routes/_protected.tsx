@@ -22,7 +22,7 @@ import {
   LayoutDashboard,
   User as UserIcon,
   ChevronRight,
-  Component,
+  IdCard,
 } from "lucide-react";
 import UserMenu from "@/components/core/user-menu";
 import { ThemeToggle } from "@/components/core/theme-toggle";
@@ -54,6 +54,11 @@ const navItems = [
     title: "Dashboard",
     icon: LayoutDashboard,
     url: "/dashboard",
+  },
+  {
+    title: "Profile",
+    icon: IdCard,
+    url: "/profile",
   },
   {
     title: "Account",

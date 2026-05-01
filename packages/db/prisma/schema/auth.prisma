@@ -23,6 +23,7 @@ model User {
   onboardingComplete Boolean        @default(false)
   notifications      Notification[]
   feedbacks          Feedback[]
+  resumeProfile      ResumeProfile?
   actedActivityEvents ActivityEvent[] @relation("ActivityEventActor")
   targetedActivityEvents ActivityEvent[] @relation("ActivityEventTarget")
 
