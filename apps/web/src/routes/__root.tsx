@@ -27,7 +27,12 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "Saas Starter",
+        title: "SwiftCV | AI Job Matching and Resume Tailoring",
+      },
+      {
+        name: "description",
+        content:
+          "SwiftCV helps tech candidates match with better jobs, generate custom resumes, and prepare for interviews with AI.",
       },
     ],
   }),

@@ -1,74 +1,66 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Clock3, FileCheck2, LineChart, MessagesSquare } from "lucide-react";
 
-const testimonials = [
+const proofPoints = [
   {
-    content:
-      "This starter kit saved me weeks of work. The integration between Better Auth and Prisma is seamless.",
-    author: "Alex Rivera",
-    role: "Founder at TechFlow",
-    avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100&h=100",
+    value: "3x",
+    label: "faster shortlisting",
+    description:
+      "Compare scored opportunities instead of manually scanning every posting from scratch.",
+    icon: Clock3,
   },
   {
-    content:
-      "The best TypeScript boilerplate I've ever used. Clean, scalable, and extremely well-documented.",
-    author: "Sarah Chen",
-    role: "Senior Engineering Manager",
-    avatar:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100&h=100",
+    value: "94%",
+    label: "example top match",
+    description:
+      "See how strongly a role aligns with skills, stack, seniority, and work preferences.",
+    icon: LineChart,
   },
   {
-    content:
-      "Building on top of Tanstack Start is a game changer. The dev experience is top-notch.",
-    author: "James Wilson",
-    role: "Independent Indie Hacker",
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100",
+    value: "1:1",
+    label: "resume-to-job tailoring",
+    description:
+      "Turn one profile into role-specific resumes that speak directly to each job description.",
+    icon: FileCheck2,
+  },
+  {
+    value: "AI",
+    label: "interview prep",
+    description:
+      "Practice technical and behavioral questions generated from the job and candidate profile.",
+    icon: MessagesSquare,
   },
 ];
 
 export const Testimonials = () => {
   return (
-    <section id="testimonials" className="py-24 bg-muted/30">
+    <section id="proof" className="border-b py-20 md:py-24">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
-            Loved by developers
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+            Designed to improve the quality of every application.
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Join thousands of developers who are building their SaaS faster.
+          <p className="mt-5 text-base leading-8 text-muted-foreground md:text-lg">
+            Instead of invented testimonials, SwiftCV shows its value through a
+            tighter workflow: better matches, clearer tradeoffs, stronger
+            resumes, and sharper preparation.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="p-8 rounded-2xl bg-card border border-border relative"
-            >
-              <div className="text-4xl text-primary/20 absolute top-4 left-6 italic font-serif">
-                "
+        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {proofPoints.map((point) => {
+            const Icon = point.icon;
+
+            return (
+              <div key={point.label} className="rounded-lg border bg-card p-6">
+                <Icon className="mb-6 size-6 text-primary" />
+                <p className="text-4xl font-bold">{point.value}</p>
+                <p className="mt-2 font-semibold">{point.label}</p>
+                <p className="mt-4 leading-7 text-muted-foreground">
+                  {point.description}
+                </p>
               </div>
-              <p className="text-lg mb-8 relative z-10 italic text-foreground/80 leading-relaxed">
-                {testimonial.content}
-              </p>
-              <div className="flex items-center gap-4">
-                <Avatar>
-                  <AvatarImage
-                    src={testimonial.avatar}
-                    alt={testimonial.author}
-                  />
-                  <AvatarFallback>{testimonial.author[0]}</AvatarFallback>
-                </Avatar>
-                <div>
-                  <h4 className="font-bold">{testimonial.author}</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.role}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

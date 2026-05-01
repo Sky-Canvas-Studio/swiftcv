@@ -1,135 +1,92 @@
 import { Link } from "@tanstack/react-router";
-import { ExternalLink, Globe, MessageCircle } from "lucide-react";
+import { BriefcaseBusiness, ExternalLink, Globe, MessageCircle } from "lucide-react";
+
+const productLinks = [
+  { label: "Features", href: "#features" },
+  { label: "Workflow", href: "#workflow" },
+  { label: "Matching", href: "#matching" },
+  { label: "Pricing", href: "#pricing" },
+];
+
+const resourceLinks = [
+  { label: "FAQ", href: "#faq" },
+  { label: "Privacy", href: "#" },
+  { label: "Terms", href: "#" },
+];
 
 export const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border pt-20 pb-10">
+    <footer className="border-t bg-background py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="col-span-1 md:col-span-1">
-            <Link
-              to="/"
-              className="text-2xl font-bold tracking-tight mb-6 inline-block"
-            >
-              TS<span className="text-primary text-blue-600">Starter</span>
+        <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
+          <div>
+            <Link to="/" className="inline-flex items-center gap-2 text-xl font-bold">
+              <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <BriefcaseBusiness className="size-5" />
+              </span>
+              <span>
+                Swift<span className="text-primary">CV</span>
+              </span>
             </Link>
-            <p className="text-muted-foreground mt-4 max-w-xs">
-              The ultimate SaaS boilerplate for TypeScript developers. Build
-              faster, scale better, and ship with confidence.
+            <p className="mt-4 max-w-sm leading-7 text-muted-foreground">
+              AI-assisted job matching, resume tailoring, and interview prep
+              for tech candidates applying worldwide.
             </p>
-            <div className="flex items-center gap-4 mt-8">
-              <a
-                href="#"
-                className="p-2 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all"
-              >
-                <Globe className="h-4 w-4" />
-              </a>
-              <a
-                href="#"
-                className="p-2 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all"
-              >
-                <MessageCircle className="h-4 w-4" />
-              </a>
-              <a
-                href="#"
-                className="p-2 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all"
-              >
-                <ExternalLink className="h-4 w-4" />
-              </a>
+            <div className="mt-6 flex items-center gap-3">
+              {[Globe, MessageCircle, ExternalLink].map((Icon, index) => (
+                <a
+                  key={index}
+                  href="#"
+                  className="flex size-9 items-center justify-center rounded-lg border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                  aria-label="SwiftCV social link"
+                >
+                  <Icon className="size-4" />
+                </a>
+              ))}
             </div>
           </div>
 
           <div>
-            <h4 className="font-bold mb-6">Product</h4>
-            <ul className="space-y-4 text-muted-foreground text-sm">
-              <li>
-                <a
-                  href="#features"
-                  className="hover:text-primary transition-colors"
-                >
-                  Features
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#pricing"
-                  className="hover:text-primary transition-colors"
-                >
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Documentation
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  API Reference
-                </a>
-              </li>
+            <h4 className="font-bold">Product</h4>
+            <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
+              {productLinks.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="hover:text-primary">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold mb-6">Company</h4>
-            <ul className="space-y-4 text-muted-foreground text-sm">
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Contact
-                </a>
-              </li>
+            <h4 className="font-bold">Resources</h4>
+            <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
+              {resourceLinks.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="hover:text-primary">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold mb-6">Subscribe to our newsletter</h4>
-            <p className="text-muted-foreground text-sm mb-4">
-              Get the latest updates and resources delivered to your inbox.
+            <h4 className="font-bold">For tech candidates</h4>
+            <p className="mt-5 leading-7 text-muted-foreground">
+              Use SwiftCV to move from a generic resume to targeted
+              applications with clearer fit signals and better preparation.
             </p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="you@example.com"
-                className="bg-muted border border-border rounded-lg px-4 py-2 text-sm w-full focus:outline-none focus:ring-1 focus:ring-primary"
-              />
-              <button className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-bold hover:opacity-90 transition-opacity">
-                Subscribe
-              </button>
-            </div>
+            <Link to="/login" className="mt-5 inline-flex text-sm font-bold text-primary">
+              Start matching jobs
+            </Link>
           </div>
         </div>
 
-        <div className="border-t border-border pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} TS Starter. All rights reserved.
-          </p>
-          <div className="flex items-center gap-8 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-primary transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-primary transition-colors">
-              Terms of Service
-            </a>
-            <a href="#" className="hover:text-primary transition-colors">
-              Cookie Policy
-            </a>
-          </div>
+        <div className="mt-10 flex flex-col gap-4 border-t pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <p>© {new Date().getFullYear()} SwiftCV. All rights reserved.</p>
+          <p>Built for worldwide software and technology careers.</p>
         </div>
       </div>
     </footer>

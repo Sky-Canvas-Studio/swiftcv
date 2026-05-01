@@ -1,5 +1,7 @@
 import { Hero } from "./components/hero";
 import { Features } from "./components/features";
+import { Workflow } from "./components/workflow";
+import { MatchIntelligence } from "./components/match-intelligence";
 import { Pricing } from "./components/pricing";
 import { Testimonials } from "./components/testimonials";
 import { FAQ } from "./components/faq";
@@ -14,6 +16,8 @@ export const Home = () => {
       <main className="flex-grow">
         <Hero />
         <Features />
+        <Workflow />
+        <MatchIntelligence />
         <Pricing />
         <Testimonials />
         <FAQ />

@@ -1,107 +1,47 @@
-# swiftcv
+# SwiftCV Apps
 
-This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines React, TanStack Start, Elysia, and more.
+SwiftCV helps users turn their resume data into better job outcomes.
 
-## Features
+Users provide resume/profile information, and SwiftCV:
 
-- **TypeScript** - For type safety and improved developer experience
-- **TanStack Start** - SSR framework with TanStack Router
-- **TailwindCSS** - Utility-first CSS for rapid UI development
-- **shadcn/ui** - Reusable UI components
-- **Elysia** - Type-safe, high-performance framework
-- **Bun** - Runtime environment
-- **Prisma** - TypeScript-first ORM
-- **PostgreSQL** - Database engine
-- **Authentication** - Better-Auth
-- **Turborepo** - Optimized monorepo build system
+- searches jobs automatically
+- matches jobs against user profile signals
+- recommends best-fit jobs with matching scores
+- generates AI interview questions based on role/profile fit
+- creates job-specific custom resumes
 
-## Getting Started
+## Purpose Of This `apps` Workspace
 
-First, install the dependencies:
+This `apps` folder contains the core product applications:
+
+- `web`: the user-facing frontend where users manage profile/resume, view job matches, and get AI outputs
+- `server`: the backend API and business logic that powers auth, profile handling, scoring orchestration, recommendations, and AI workflows
+
+`joblake` is a separate microservice (outside this folder, at repository root) responsible for job discovery and advanced matching logic.
+
+## High-Level Flow
+
+1. User enters or updates resume/profile data in `web`.
+2. `server` stores and normalizes profile data.
+3. `server` calls `joblake` for job search + advanced match computation.
+4. `server` returns ranked recommendations with match scores to `web`.
+5. User can request AI interview questions and custom resumes for a selected job.
+
+## Local Development
+
+Install dependencies:
 
 ```bash
 bun install
 ```
 
-## Database Setup
-
-This project uses PostgreSQL with Prisma.
-
-1. Make sure you have a PostgreSQL database set up.
-2. Update your `apps/server/.env` file with your PostgreSQL connection details.
-
-3. Generate the Prisma client and push the schema:
-
-```bash
-bun run db:push
-```
-
-Then, run the development server:
+Run apps in development:
 
 ```bash
 bun run dev
 ```
 
-Open [http://localhost:3006](http://localhost:3006) in your browser to see the web application.
-The API is running at [http://localhost:3005](http://localhost:3005).
+Default local URLs:
 
-## Redis Setup
-
-Redis is required for this starter. The shared client lives in `packages/redis`, so the server can use one shared connection for rate limits, visitor tracking, caching, and future cross-instance coordination.
-
-1. Start Redis locally:
-
-```bash
-docker run --name swiftcv-redis -p 6379:6379 -d redis:7-alpine
-```
-
-2. Add these variables to `apps/server/.env`:
-
-```bash
-REDIS_URL=redis://localhost:6379
-REDIS_KEY_PREFIX=swiftcv:
-```
-
-3. Install dependencies after pulling the latest changes:
-
-```bash
-bun install
-```
-
-4. Import the shared client where you need caching:
-
-```ts
-import { getCache, setCache } from "@redis";
-
-const cachedUser = await getCache<{ id: string; email: string }>("user:123");
-
-if (!cachedUser) {
-  const user = await loadUserFromDatabase();
-  await setCache("user:123", user, 60);
-}
-```
-
-Use Redis for short-lived, regeneratable data such as API responses, rate-limit counters, sessions, or expensive query results. Do not treat it as your source of truth; PostgreSQL remains the real database.
-
-## Project Structure
-
-```
-swiftcv/
-├── apps/
-│   ├── web/         # Frontend application (React + TanStack Start)
-│   └── server/      # Backend API (Elysia)
-├── packages/
-│   ├── api/         # API layer / business logic
-│   ├── auth/        # Authentication configuration & logic
-│   └── db/          # Database schema & queries
-```
-
-## Available Scripts
-
-- `bun run dev`: Start all applications in development mode
-- `bun run build`: Build all applications
-- `bun run dev:web`: Start only the web application
-- `bun run dev:server`: Start only the server
-- `bun run check-types`: Check TypeScript types across all apps
-- `bun run db:push`: Push schema changes to database
-- `bun run db:studio`: Open database studio UI
+- Web: `http://localhost:3006`
+- Server API: `http://localhost:3005`

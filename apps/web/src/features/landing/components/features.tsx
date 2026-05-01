@@ -1,72 +1,92 @@
-import { Zap, Shield, Rocket, Layers, BarChart3, Users } from "lucide-react";
+import {
+  BadgeCheck,
+  BrainCircuit,
+  FileSearch,
+  FileText,
+  Globe2,
+  ListChecks,
+  Sparkles,
+} from "lucide-react";
 
-const features = [
+const benefits = [
   {
-    title: "Lightning Fast",
+    title: "Profile-first matching",
     description:
-      "Optimized for performance with Tanstack Start and optimized server-side rendering.",
-    icon: <Zap className="h-6 w-6" />,
+      "Skills, experience, seniority, location, and career goals become structured signals for better recommendations.",
+    icon: FileSearch,
   },
   {
-    title: "Secure by Default",
+    title: "Ranked jobs with scores",
     description:
-      "State-of-the-art authentication with Better Auth and type-safe database access.",
-    icon: <Shield className="h-6 w-6" />,
+      "Every recommendation shows why it fits, so candidates can spend time on the highest-quality applications.",
+    icon: BadgeCheck,
   },
   {
-    title: "Rapid Development",
+    title: "Custom resume versions",
     description:
-      "Built-in components and pre-configured workflows to help you ship in days, not months.",
-    icon: <Rocket className="h-6 w-6" />,
+      "Generate targeted resumes that emphasize the projects, skills, and keywords each job description needs.",
+    icon: FileText,
   },
   {
-    title: "Modular Architecture",
+    title: "AI interview prep",
     description:
-      "Highly scalable folder structure that keeps your codebase clean and maintainable.",
-    icon: <Layers className="h-6 w-6" />,
+      "Create role-specific technical, behavioral, and project questions from the candidate profile and job post.",
+    icon: BrainCircuit,
   },
   {
-    title: "Analytics Included",
+    title: "Built for global search",
     description:
-      "Integrated dashboard and analytics to monitor your SaaS growth from day one.",
-    icon: <BarChart3 className="h-6 w-6" />,
+      "Support worldwide, remote, hybrid, and relocation-friendly job discovery for modern tech careers.",
+    icon: Globe2,
   },
   {
-    title: "Multi-tenant Ready",
-    description: "Built-in support for teams and organizations out of the box.",
-    icon: <Users className="h-6 w-6" />,
+    title: "Application focus",
+    description:
+      "Keep profile, matches, resume variants, and prep material organized around each opportunity.",
+    icon: ListChecks,
   },
 ];
 
 export const Features = () => {
   return (
-    <section id="features" className="py-24 bg-muted/30">
+    <section id="features" className="border-b py-20 md:py-24">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
-            Everything you need to launch
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Stop wasting time on boilerplate. Focus on your unique product
-            features while we handle the rest.
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <div className="mb-4 inline-flex items-center gap-2 rounded-lg border bg-card px-3 py-2 text-sm font-medium text-muted-foreground">
+              <Sparkles className="size-4 text-primary" />
+              Career search operating system
+            </div>
+            <h2 className="text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+              Benefits built around how tech candidates actually apply.
+            </h2>
+          </div>
+          <p className="max-w-2xl text-base leading-8 text-muted-foreground md:text-lg">
+            SwiftCV connects resume data, job search, matching scores, resume
+            tailoring, and interview prep into one focused workflow instead of
+            making candidates jump across disconnected tools.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="p-8 rounded-2xl border border-border bg-card hover:border-primary/50 hover:shadow-lg transition-all duration-300 group"
-            >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                {feature.icon}
+        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {benefits.map((feature) => {
+            const Icon = feature.icon;
+
+            return (
+              <div
+                key={feature.title}
+                className="rounded-lg border bg-card p-6 shadow-sm transition-colors hover:border-primary/50"
+              >
+                <div className="mb-5 flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <Icon className="size-5" />
+                </div>
+                <h3 className="text-lg font-bold">{feature.title}</h3>
+                <p className="mt-3 leading-7 text-muted-foreground">
+                  {feature.description}
+                </p>
               </div>
-              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

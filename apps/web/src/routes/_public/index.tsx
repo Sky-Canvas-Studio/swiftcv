@@ -1,7 +1,16 @@
-import { Home } from "@/features/landing/home";
 import { env } from "@env/web";
 import { createFileRoute } from "@tanstack/react-router";
 import { getOwnerSetupStatus } from "@/features/admin/owner/api";
+import { Hero } from "@/features/landing/components/hero";
+import { Features } from "@/features/landing/components/features";
+import { Workflow } from "@/features/landing/components/workflow";
+import { MatchIntelligence } from "@/features/landing/components/match-intelligence";
+import { Pricing } from "@/features/landing/components/pricing";
+import { Testimonials } from "@/features/landing/components/testimonials";
+import { FAQ } from "@/features/landing/components/faq";
+import { CTA } from "@/features/landing/components/cta";
+import { Footer } from "@/features/landing/components/footer";
+import { LandingNav } from "@/features/landing/components/landing-nav";
 
 export const Route = createFileRoute("/_public/")({
   beforeLoad: async () => {
@@ -28,7 +37,20 @@ export const Route = createFileRoute("/_public/")({
 function HomeComponent() {
   return (
     <>
-      <Home />
+      <div className="min-h-screen bg-background text-foreground flex flex-col">
+        <LandingNav />
+        <main className="flex-grow">
+          <Hero />
+          <Features />
+          <Workflow />
+          <MatchIntelligence />
+          <Pricing />
+          <Testimonials />
+          <FAQ />
+          <CTA />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }

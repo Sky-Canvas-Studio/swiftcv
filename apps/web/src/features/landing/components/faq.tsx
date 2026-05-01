@@ -7,56 +7,57 @@ import {
 
 const faqs = [
   {
-    question: "What's included in the TS Starter?",
+    question: "Who is SwiftCV for?",
     answer:
-      "It includes everything you need to launch a SaaS: Authentication (Better Auth), Database (Prisma), UI Components (Shadcn/UI), Styling (Tailwind 4), and much more.",
+      "SwiftCV is built for job seekers in tech, especially software developers, engineers, product-minded builders, and candidates applying across remote or global markets.",
   },
   {
-    question: "Is it easy to customize the design?",
+    question: "How does the match score help me?",
     answer:
-      "Yes! We use Tailwind CSS 4 and Shadcn/UI, making it extremely easy to customize every aspect of the design to match your brand.",
+      "The score gives you a quick way to compare roles by profile fit. It should help you focus on jobs where your skills, experience, seniority, and preferences line up better.",
   },
   {
-    question: "Can I use this for commercial projects?",
+    question: "Can SwiftCV create a different resume for every job?",
     answer:
-      "Absolutely. The starter is designed precisely for that. You can use it to build any SaaS, landing page, or web application you want.",
+      "Yes. The goal is to use your base profile and the selected job description to generate a resume version that highlights the most relevant skills, projects, and keywords.",
   },
   {
-    question: "Do you provide regular updates?",
+    question: "Does it help with interviews?",
     answer:
-      "We keep all dependencies up to date and regularly add new features and components based on community feedback.",
+      "Yes. SwiftCV can prepare interview questions from the job description and your resume profile, including technical, project, and behavioral prompts.",
   },
   {
-    question: "What is the tech stack?",
+    question: "Where does job matching happen?",
     answer:
-      "The stack includes Tanstack Start, React 19, Prisma, Better Auth, Tailwind 4, and Vite.",
+      "The web app and server handle the user product flow, while JobLake is the separate microservice responsible for job discovery and advanced matching.",
   },
 ];
 
 export const FAQ = () => {
   return (
-    <section id="faq" className="py-24">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
-            Frequently Asked Questions
+    <section id="faq" className="border-b bg-muted/35 py-20 md:py-24">
+      <div className="container mx-auto max-w-4xl px-4">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+            Questions candidates usually ask.
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Find answers to common questions about the TS Starter template.
+          <p className="mt-5 text-base leading-8 text-muted-foreground md:text-lg">
+            SwiftCV is focused on making the job search more targeted, not more
+            noisy.
           </p>
         </div>
 
-        <Accordion className="w-full space-y-4">
+        <Accordion className="w-full space-y-3">
           {faqs.map((faq, index) => (
             <AccordionItem
-              key={index}
+              key={faq.question}
               value={`item-${index}`}
-              className="px-6 border border-border rounded-xl"
+              className="rounded-lg border bg-card px-5"
             >
-              <AccordionTrigger className="text-left font-semibold text-lg hover:no-underline">
+              <AccordionTrigger className="text-left text-base font-semibold hover:no-underline">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground leading-relaxed">
+              <AccordionContent className="leading-7 text-muted-foreground">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
