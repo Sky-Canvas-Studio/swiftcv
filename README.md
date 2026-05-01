@@ -1,4 +1,4 @@
-# ts-starter
+# swiftcv
 
 This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines React, TanStack Start, Elysia, and more.
 
@@ -42,8 +42,8 @@ Then, run the development server:
 bun run dev
 ```
 
-Open [http://localhost:3001](http://localhost:3001) in your browser to see the web application.
-The API is running at [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3006](http://localhost:3006) in your browser to see the web application.
+The API is running at [http://localhost:3005](http://localhost:3005).
 
 ## Redis Setup
 
@@ -52,14 +52,14 @@ Redis is required for this starter. The shared client lives in `packages/redis`,
 1. Start Redis locally:
 
 ```bash
-docker run --name ts-starter-redis -p 6379:6379 -d redis:7-alpine
+docker run --name swiftcv-redis -p 6379:6379 -d redis:7-alpine
 ```
 
 2. Add these variables to `apps/server/.env`:
 
 ```bash
 REDIS_URL=redis://localhost:6379
-REDIS_KEY_PREFIX=ts-starter:
+REDIS_KEY_PREFIX=swiftcv:
 ```
 
 3. Install dependencies after pulling the latest changes:
@@ -86,7 +86,7 @@ Use Redis for short-lived, regeneratable data such as API responses, rate-limit 
 ## Project Structure
 
 ```
-ts-starter/
+swiftcv/
 ├── apps/
 │   ├── web/         # Frontend application (React + TanStack Start)
 │   └── server/      # Backend API (Elysia)

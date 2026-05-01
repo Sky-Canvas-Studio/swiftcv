@@ -30,7 +30,7 @@ mock.module("@auth", () => ({
 
 mock.module("@env/server", () => ({
   env: {
-    CORS_ORIGIN: "http://localhost:3000",
+    CORS_ORIGIN: "http://localhost:3005",
   },
 }));
 
