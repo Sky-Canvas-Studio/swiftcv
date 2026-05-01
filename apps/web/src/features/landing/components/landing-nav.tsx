@@ -1,10 +1,18 @@
-import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
-import { BriefcaseBusiness, Menu, Moon, Sun, X } from "lucide-react";
+import { BriefcaseBusiness, Menu, Moon, Sun } from "lucide-react";
 import UserMenu from "@/components/core/user-menu";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const navItems = [
   { label: "Features", href: "#features" },
@@ -16,9 +24,6 @@ const navItems = [
 
 export const LandingNav = () => {
   const { theme, setTheme } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const closeMenu = () => setIsOpen(false);
 
   return (
     <div className="h-16">
@@ -29,7 +34,6 @@ export const LandingNav = () => {
               <Link
                 to="/"
                 className="flex items-center gap-2 text-xl font-bold"
-                onClick={closeMenu}
               >
                 <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                   <BriefcaseBusiness className="size-5" />
@@ -67,45 +71,7 @@ export const LandingNav = () => {
               <div className="hidden sm:flex sm:items-center sm:gap-2">
                 <UserMenu />
               </div>
-              <Button
-                variant="outline"
-                size="icon-sm"
-                className="lg:hidden"
-                onClick={() => setIsOpen((value) => !value)}
-                aria-label="Toggle navigation"
-              >
-                {isOpen ? <X className="size-4" /> : <Menu className="size-4" />}
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className={cn(
-            "border-t bg-background/96 lg:hidden",
-            isOpen ? "block" : "hidden"
-          )}
-        >
-          <div className="container mx-auto flex flex-col gap-1 px-4 py-4">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={closeMenu}
-                className="rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
-              >
-                {item.label}
-              </a>
-            ))}
-            <div className="mt-3 grid grid-cols-2 gap-2 sm:hidden">
-              <Link to="/login" onClick={closeMenu}>
-                <Button variant="outline" className="w-full">
-                  Log in
-                </Button>
-              </Link>
-              <Link to="/login" onClick={closeMenu}>
-                <Button className="w-full">Get started</Button>
-              </Link>
+              <MobileNavDrawer />
             </div>
           </div>
         </div>
@@ -113,3 +79,71 @@ export const LandingNav = () => {
     </div>
   );
 };
+
+function MobileNavDrawer() {
+  return (
+    <Sheet>
+      <SheetTrigger
+        render={
+          <Button
+            variant="outline"
+            size="icon-sm"
+            className="lg:hidden"
+            aria-label="Open navigation"
+          />
+        }
+      >
+        <Menu className="size-4" />
+      </SheetTrigger>
+      <SheetContent
+        side="left"
+        className="w-[86vw] max-w-80 border-r bg-background/96 p-0 backdrop-blur-xl sm:max-w-sm lg:hidden"
+      >
+        <SheetHeader className="border-b p-5">
+          <SheetTitle>
+            <Link to="/" className="flex items-center gap-2 text-xl font-bold">
+              <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <BriefcaseBusiness className="size-5" />
+              </span>
+              <span>
+                Swift<span className="text-primary">CV</span>
+              </span>
+            </Link>
+          </SheetTitle>
+          <SheetDescription>
+            AI job matching, resume tailoring, and interview prep for tech
+            candidates.
+          </SheetDescription>
+        </SheetHeader>
+
+        <nav className="flex flex-col gap-1 p-4">
+          {navItems.map((item) => (
+            <SheetClose key={item.href}>
+              <a
+                href={item.href}
+                className="flex rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              >
+                {item.label}
+              </a>
+            </SheetClose>
+          ))}
+        </nav>
+
+        <SheetFooter className="border-t p-4">
+          <SheetClose>
+            <Link to="/login">
+              <Button variant="outline" className="w-full justify-center">
+                Log in
+              </Button>
+            </Link>
+          </SheetClose>
+          <SheetClose>
+            <Link to="/login">
+              <Button className="w-full justify-center">Get started</Button>
+            </Link>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  );
+}
