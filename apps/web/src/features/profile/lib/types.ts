@@ -3,7 +3,6 @@ export type SectionId =
   | "contact"
   | "education"
   | "experience"
-  | "work"
   | "skills"
   | "languages"
   | "projects"
@@ -75,7 +74,6 @@ export type ProfileContent = {
   contact: ContactInfo;
   education: DatedEntry[];
   experience: DatedEntry[];
-  work: DatedEntry[];
   skills: SkillCategory[];
   languages: LanguageSkill[];
   projects: DatedEntry[];

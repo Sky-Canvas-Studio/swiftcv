@@ -32,7 +32,6 @@ export function normalizeContent(content: unknown): ProfileContent {
     contact: normalizeContact(value.contact),
     education: normalizeEntries(value.education),
     experience: normalizeEntries(value.experience),
-    work: normalizeEntries(value.work),
     skills: normalizeSkills(value.skills),
     languages: normalizeLanguages(value.languages),
     projects: normalizeEntries(value.projects),

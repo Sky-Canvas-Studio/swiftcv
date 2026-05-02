@@ -17,7 +17,7 @@ import { ProfileHeader } from "./components/profile-header";
 import { ProfileSections } from "./components/profile-sections";
 import { SectionNavigator } from "./components/section-navigator";
 
-type EntrySection = "education" | "experience" | "work" | "projects";
+type EntrySection = "education" | "experience" | "projects";
 type EntryEdit = { section: EntrySection; item?: DatedEntry; customSectionId?: string };
 
 export function ProfilePage() {

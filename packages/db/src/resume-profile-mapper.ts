@@ -20,7 +20,6 @@ export const seededSectionOrder = [
   "contact",
   "education",
   "experience",
-  "work",
   "skills",
   "languages",
   "projects",
@@ -30,8 +29,6 @@ export const seededSectionOrder = [
 
 export function buildProfileContent(resume: ResumeJson) {
   const place = splitPlace(resume.personal_info.place_of_birth);
-  const workEntries = resume.work_experience.filter((item) => item.company === "Interspeed");
-  const experienceEntries = resume.work_experience.filter((item) => item.company !== "Interspeed");
 
   return {
     personal: {
@@ -53,8 +50,9 @@ export function buildProfileContent(resume: ResumeJson) {
       links: [],
     },
     education: resume.education.map((item, index) => toEducation(item, index)),
-    experience: experienceEntries.map((item, index) => toWorkEntry(item, index, "experience")),
-    work: workEntries.map((item, index) => toWorkEntry(item, index, "work")),
+    experience: resume.work_experience.map((item, index) =>
+      toWorkEntry(item, index, "experience"),
+    ),
     skills: Object.entries(resume.skills).map(([name, skills]) => ({
       id: `skill-${name}`,
       name: toTitle(name),

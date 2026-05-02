@@ -1,5 +1,4 @@
 import {
-  BriefcaseBusiness,
   FolderKanban,
   GraduationCap,
   Languages,
@@ -10,6 +9,7 @@ import {
   User,
   Users,
 } from "lucide-react";
+import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { sectionLabels } from "../lib/defaults";
 import type { CustomSection, DatedEntry, LanguageSkill, Recommendation, ResumeProfile, SectionId } from "../lib/types";
@@ -21,12 +21,11 @@ import { ProfileSectionCard } from "./profile-section-card";
 import { RecommendationList } from "./recommendation-list";
 import { SkillsView } from "./skills-view";
 
-const icons: Record<SectionId, JSX.Element> = {
+const icons: Record<SectionId, ReactNode> = {
   personal: <User className="size-4" />,
   contact: <Mail className="size-4" />,
   education: <GraduationCap className="size-4" />,
   experience: <Sparkles className="size-4" />,
-  work: <BriefcaseBusiness className="size-4" />,
   skills: <Star className="size-4" />,
   languages: <Languages className="size-4" />,
   projects: <FolderKanban className="size-4" />,
@@ -40,10 +39,10 @@ export function ProfileSections(props: {
   onEditPersonal: () => void;
   onEditContact: () => void;
   onEditSkills: () => void;
-  onAddEntry: (section: "education" | "experience" | "work" | "projects") => void;
-  onEditEntry: (section: "education" | "experience" | "work" | "projects", entry: DatedEntry) => void;
-  onDeleteEntry: (section: "education" | "experience" | "work" | "projects", id: string) => void;
-  onMoveEntry: (section: "education" | "experience" | "work" | "projects", from: number, to: number) => void;
+  onAddEntry: (section: "education" | "experience" | "projects") => void;
+  onEditEntry: (section: "education" | "experience" | "projects", entry: DatedEntry) => void;
+  onDeleteEntry: (section: "education" | "experience" | "projects", id: string) => void;
+  onMoveEntry: (section: "education" | "experience" | "projects", from: number, to: number) => void;
   onAddLanguage: () => void;
   onEditLanguage: (item: LanguageSkill) => void;
   onDeleteLanguage: (id: string) => void;
@@ -86,7 +85,7 @@ function getAddHandler(section: SectionId, props: Parameters<typeof ProfileSecti
   if (section === "languages") return props.onAddLanguage;
   if (section === "recommendations") return props.onAddRecommendation;
   if (section === "custom") return props.onAddCustomSection;
-  if (section === "education" || section === "experience" || section === "work" || section === "projects") {
+  if (section === "education" || section === "experience" || section === "projects") {
     return () => props.onAddEntry(section);
   }
 }
