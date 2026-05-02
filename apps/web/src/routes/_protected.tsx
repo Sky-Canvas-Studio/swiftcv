@@ -124,7 +124,7 @@ function ProtectedLayout() {
         </Sidebar>
 
         <SidebarInset className="flex flex-col min-w-0">
-          <header className="flex h-16 shrink-0 items-center justify-between gap-2 border-b px-6">
+          <header className="sticky top-0 z-30 flex h-16 shrink-0 items-center justify-between gap-2 border-b bg-background/95 px-6 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="flex items-center gap-2">
               <SidebarTrigger className="-ml-1" />
               <div className="h-4 w-[1px] bg-border mx-2" />
