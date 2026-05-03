@@ -25,6 +25,8 @@ export const env = createEnv({
       .default("false")
       .transform((val) => val === "true"),
     CORS_ORIGIN: z.url(),
+    JOBLAKE_HTTP_URL: z.url(),
+    JOBLAKE_WS_URL: z.url(),
     NODE_ENV: z
       .enum(["development", "production", "test"])
       .default("development"),

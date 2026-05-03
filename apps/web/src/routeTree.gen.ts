@@ -22,6 +22,7 @@ import { Route as AdminVisitorsRouteImport } from './routes/admin/visitors'
 import { Route as AdminUsersRouteImport } from './routes/admin/users'
 import { Route as AdminRateLimitsRouteImport } from './routes/admin/rate-limits'
 import { Route as AdminOverviewRouteImport } from './routes/admin/overview'
+import { Route as AdminMonitoringRouteImport } from './routes/admin/monitoring'
 import { Route as AdminKitchenSinkRouteImport } from './routes/admin/kitchen-sink'
 import { Route as AdminFeedbackRouteImport } from './routes/admin/feedback'
 import { Route as AdminActivityRouteImport } from './routes/admin/activity'
@@ -94,6 +95,11 @@ const AdminOverviewRoute = AdminOverviewRouteImport.update({
   path: '/overview',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminMonitoringRoute = AdminMonitoringRouteImport.update({
+  id: '/monitoring',
+  path: '/monitoring',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminKitchenSinkRoute = AdminKitchenSinkRouteImport.update({
   id: '/kitchen-sink',
   path: '/kitchen-sink',
@@ -143,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/admin/activity': typeof AdminActivityRoute
   '/admin/feedback': typeof AdminFeedbackRoute
   '/admin/kitchen-sink': typeof AdminKitchenSinkRoute
+  '/admin/monitoring': typeof AdminMonitoringRoute
   '/admin/overview': typeof AdminOverviewRoute
   '/admin/rate-limits': typeof AdminRateLimitsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -163,6 +170,7 @@ export interface FileRoutesByTo {
   '/admin/activity': typeof AdminActivityRoute
   '/admin/feedback': typeof AdminFeedbackRoute
   '/admin/kitchen-sink': typeof AdminKitchenSinkRoute
+  '/admin/monitoring': typeof AdminMonitoringRoute
   '/admin/overview': typeof AdminOverviewRoute
   '/admin/rate-limits': typeof AdminRateLimitsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -185,6 +193,7 @@ export interface FileRoutesById {
   '/admin/activity': typeof AdminActivityRoute
   '/admin/feedback': typeof AdminFeedbackRoute
   '/admin/kitchen-sink': typeof AdminKitchenSinkRoute
+  '/admin/monitoring': typeof AdminMonitoringRoute
   '/admin/overview': typeof AdminOverviewRoute
   '/admin/rate-limits': typeof AdminRateLimitsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -209,6 +218,7 @@ export interface FileRouteTypes {
     | '/admin/activity'
     | '/admin/feedback'
     | '/admin/kitchen-sink'
+    | '/admin/monitoring'
     | '/admin/overview'
     | '/admin/rate-limits'
     | '/admin/users'
@@ -229,6 +239,7 @@ export interface FileRouteTypes {
     | '/admin/activity'
     | '/admin/feedback'
     | '/admin/kitchen-sink'
+    | '/admin/monitoring'
     | '/admin/overview'
     | '/admin/rate-limits'
     | '/admin/users'
@@ -250,6 +261,7 @@ export interface FileRouteTypes {
     | '/admin/activity'
     | '/admin/feedback'
     | '/admin/kitchen-sink'
+    | '/admin/monitoring'
     | '/admin/overview'
     | '/admin/rate-limits'
     | '/admin/users'
@@ -364,6 +376,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminOverviewRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/monitoring': {
+      id: '/admin/monitoring'
+      path: '/monitoring'
+      fullPath: '/admin/monitoring'
+      preLoaderRoute: typeof AdminMonitoringRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/kitchen-sink': {
       id: '/admin/kitchen-sink'
       path: '/kitchen-sink'
@@ -436,6 +455,7 @@ interface AdminRouteChildren {
   AdminActivityRoute: typeof AdminActivityRoute
   AdminFeedbackRoute: typeof AdminFeedbackRoute
   AdminKitchenSinkRoute: typeof AdminKitchenSinkRoute
+  AdminMonitoringRoute: typeof AdminMonitoringRoute
   AdminOverviewRoute: typeof AdminOverviewRoute
   AdminRateLimitsRoute: typeof AdminRateLimitsRoute
   AdminUsersRoute: typeof AdminUsersRoute
@@ -448,6 +468,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminActivityRoute: AdminActivityRoute,
   AdminFeedbackRoute: AdminFeedbackRoute,
   AdminKitchenSinkRoute: AdminKitchenSinkRoute,
+  AdminMonitoringRoute: AdminMonitoringRoute,
   AdminOverviewRoute: AdminOverviewRoute,
   AdminRateLimitsRoute: AdminRateLimitsRoute,
   AdminUsersRoute: AdminUsersRoute,

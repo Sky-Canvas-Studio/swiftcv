@@ -28,6 +28,7 @@ import {
   Activity,
   History,
   Webhook,
+  Monitor,
 } from "lucide-react";
 import UserMenu from "@/components/core/user-menu";
 import { ThemeToggle } from "@/components/core/theme-toggle";
@@ -92,6 +93,11 @@ const navItems = [
     title: "Webhooks",
     icon: Webhook,
     url: "/admin/webhooks",
+  },
+  {
+    title: "Monitoring",
+    icon: Monitor,
+    url: "/admin/monitoring",
   },
   {
     title: "Components",
