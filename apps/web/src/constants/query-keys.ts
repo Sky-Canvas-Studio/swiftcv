@@ -38,6 +38,9 @@ export const queryKeys = {
         limit: number;
       }) => ["admin-visitors-list", params] as const,
     },
+    jobs: {
+      list: (params: Record<string, unknown>) => ["admin-jobs", params] as const,
+    },
     users: {
       all: () => ["admin-users"] as const,
       list: (search: string) => [...queryKeys.admin.users.all(), search] as const,

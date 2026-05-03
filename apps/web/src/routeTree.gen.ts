@@ -24,6 +24,7 @@ import { Route as AdminRateLimitsRouteImport } from './routes/admin/rate-limits'
 import { Route as AdminOverviewRouteImport } from './routes/admin/overview'
 import { Route as AdminMonitoringRouteImport } from './routes/admin/monitoring'
 import { Route as AdminKitchenSinkRouteImport } from './routes/admin/kitchen-sink'
+import { Route as AdminJobsRouteImport } from './routes/admin/jobs'
 import { Route as AdminFeedbackRouteImport } from './routes/admin/feedback'
 import { Route as AdminActivityRouteImport } from './routes/admin/activity'
 import { Route as ProtectedProfileRouteImport } from './routes/_protected/profile'
@@ -105,6 +106,11 @@ const AdminKitchenSinkRoute = AdminKitchenSinkRouteImport.update({
   path: '/kitchen-sink',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminJobsRoute = AdminJobsRouteImport.update({
+  id: '/jobs',
+  path: '/jobs',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminFeedbackRoute = AdminFeedbackRouteImport.update({
   id: '/feedback',
   path: '/feedback',
@@ -148,6 +154,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProtectedProfileRoute
   '/admin/activity': typeof AdminActivityRoute
   '/admin/feedback': typeof AdminFeedbackRoute
+  '/admin/jobs': typeof AdminJobsRoute
   '/admin/kitchen-sink': typeof AdminKitchenSinkRoute
   '/admin/monitoring': typeof AdminMonitoringRoute
   '/admin/overview': typeof AdminOverviewRoute
@@ -169,6 +176,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProtectedProfileRoute
   '/admin/activity': typeof AdminActivityRoute
   '/admin/feedback': typeof AdminFeedbackRoute
+  '/admin/jobs': typeof AdminJobsRoute
   '/admin/kitchen-sink': typeof AdminKitchenSinkRoute
   '/admin/monitoring': typeof AdminMonitoringRoute
   '/admin/overview': typeof AdminOverviewRoute
@@ -192,6 +200,7 @@ export interface FileRoutesById {
   '/_protected/profile': typeof ProtectedProfileRoute
   '/admin/activity': typeof AdminActivityRoute
   '/admin/feedback': typeof AdminFeedbackRoute
+  '/admin/jobs': typeof AdminJobsRoute
   '/admin/kitchen-sink': typeof AdminKitchenSinkRoute
   '/admin/monitoring': typeof AdminMonitoringRoute
   '/admin/overview': typeof AdminOverviewRoute
@@ -217,6 +226,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/admin/activity'
     | '/admin/feedback'
+    | '/admin/jobs'
     | '/admin/kitchen-sink'
     | '/admin/monitoring'
     | '/admin/overview'
@@ -238,6 +248,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/admin/activity'
     | '/admin/feedback'
+    | '/admin/jobs'
     | '/admin/kitchen-sink'
     | '/admin/monitoring'
     | '/admin/overview'
@@ -260,6 +271,7 @@ export interface FileRouteTypes {
     | '/_protected/profile'
     | '/admin/activity'
     | '/admin/feedback'
+    | '/admin/jobs'
     | '/admin/kitchen-sink'
     | '/admin/monitoring'
     | '/admin/overview'
@@ -390,6 +402,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminKitchenSinkRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/jobs': {
+      id: '/admin/jobs'
+      path: '/jobs'
+      fullPath: '/admin/jobs'
+      preLoaderRoute: typeof AdminJobsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/feedback': {
       id: '/admin/feedback'
       path: '/feedback'
@@ -454,6 +473,7 @@ const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
 interface AdminRouteChildren {
   AdminActivityRoute: typeof AdminActivityRoute
   AdminFeedbackRoute: typeof AdminFeedbackRoute
+  AdminJobsRoute: typeof AdminJobsRoute
   AdminKitchenSinkRoute: typeof AdminKitchenSinkRoute
   AdminMonitoringRoute: typeof AdminMonitoringRoute
   AdminOverviewRoute: typeof AdminOverviewRoute
@@ -467,6 +487,7 @@ interface AdminRouteChildren {
 const AdminRouteChildren: AdminRouteChildren = {
   AdminActivityRoute: AdminActivityRoute,
   AdminFeedbackRoute: AdminFeedbackRoute,
+  AdminJobsRoute: AdminJobsRoute,
   AdminKitchenSinkRoute: AdminKitchenSinkRoute,
   AdminMonitoringRoute: AdminMonitoringRoute,
   AdminOverviewRoute: AdminOverviewRoute,

@@ -29,6 +29,7 @@ import {
   History,
   Webhook,
   Monitor,
+  BriefcaseBusiness,
 } from "lucide-react";
 import UserMenu from "@/components/core/user-menu";
 import { ThemeToggle } from "@/components/core/theme-toggle";
@@ -98,6 +99,11 @@ const navItems = [
     title: "Monitoring",
     icon: Monitor,
     url: "/admin/monitoring",
+  },
+  {
+    title: "Jobs",
+    icon: BriefcaseBusiness,
+    url: "/admin/jobs",
   },
   {
     title: "Components",
