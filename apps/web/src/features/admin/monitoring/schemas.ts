@@ -39,6 +39,8 @@ const monitorRunSourceSchema = z.object({
   collected: z.number(),
   duration_ms: z.number().nullable(),
   error: z.string().nullable(),
+  started_at: dateStringSchema.optional(),
+  finished_at: dateStringSchema.optional(),
 });
 
 const monitorRunSchema = z.object({
@@ -69,6 +71,7 @@ const monitorRunSchema = z.object({
       timestamp: dateStringSchema,
     }),
   ),
+  result: z.record(z.string(), z.unknown()).optional(),
 });
 
 const monitorEventSchema = z.object({

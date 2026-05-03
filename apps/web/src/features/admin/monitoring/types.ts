@@ -52,6 +52,8 @@ export interface MonitorRunSourceSnapshot {
   collected: number;
   duration_ms: number | null;
   error: string | null;
+  started_at?: string;
+  finished_at?: string;
 }
 
 export interface MonitorSourceSnapshot {
@@ -82,6 +84,7 @@ export interface MonitorRunSnapshot {
   dimensions: MonitorDimensions;
   queues: MonitorQueues;
   errors: { source: string; error: string; timestamp: string }[];
+  result?: Record<string, unknown>;
 }
 
 export interface MonitorEvent {
