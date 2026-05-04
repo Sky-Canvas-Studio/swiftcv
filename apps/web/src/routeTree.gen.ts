@@ -28,6 +28,7 @@ import { Route as AdminJobsRouteImport } from './routes/admin/jobs'
 import { Route as AdminFeedbackRouteImport } from './routes/admin/feedback'
 import { Route as AdminActivityRouteImport } from './routes/admin/activity'
 import { Route as ProtectedProfileRouteImport } from './routes/_protected/profile'
+import { Route as ProtectedMyJobsRouteImport } from './routes/_protected/my-jobs'
 import { Route as ProtectedDashboardRouteImport } from './routes/_protected/dashboard'
 import { Route as ProtectedAccountRouteImport } from './routes/_protected/account'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
@@ -126,6 +127,11 @@ const ProtectedProfileRoute = ProtectedProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => ProtectedRoute,
 } as any)
+const ProtectedMyJobsRoute = ProtectedMyJobsRouteImport.update({
+  id: '/my-jobs',
+  path: '/my-jobs',
+  getParentRoute: () => ProtectedRoute,
+} as any)
 const ProtectedDashboardRoute = ProtectedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -151,6 +157,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof AuthLoginRoute
   '/account': typeof ProtectedAccountRoute
   '/dashboard': typeof ProtectedDashboardRoute
+  '/my-jobs': typeof ProtectedMyJobsRoute
   '/profile': typeof ProtectedProfileRoute
   '/admin/activity': typeof AdminActivityRoute
   '/admin/feedback': typeof AdminFeedbackRoute
@@ -173,6 +180,7 @@ export interface FileRoutesByTo {
   '/login': typeof AuthLoginRoute
   '/account': typeof ProtectedAccountRoute
   '/dashboard': typeof ProtectedDashboardRoute
+  '/my-jobs': typeof ProtectedMyJobsRoute
   '/profile': typeof ProtectedProfileRoute
   '/admin/activity': typeof AdminActivityRoute
   '/admin/feedback': typeof AdminFeedbackRoute
@@ -197,6 +205,7 @@ export interface FileRoutesById {
   '/_auth/login': typeof AuthLoginRoute
   '/_protected/account': typeof ProtectedAccountRoute
   '/_protected/dashboard': typeof ProtectedDashboardRoute
+  '/_protected/my-jobs': typeof ProtectedMyJobsRoute
   '/_protected/profile': typeof ProtectedProfileRoute
   '/admin/activity': typeof AdminActivityRoute
   '/admin/feedback': typeof AdminFeedbackRoute
@@ -223,6 +232,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/account'
     | '/dashboard'
+    | '/my-jobs'
     | '/profile'
     | '/admin/activity'
     | '/admin/feedback'
@@ -245,6 +255,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/account'
     | '/dashboard'
+    | '/my-jobs'
     | '/profile'
     | '/admin/activity'
     | '/admin/feedback'
@@ -268,6 +279,7 @@ export interface FileRouteTypes {
     | '/_auth/login'
     | '/_protected/account'
     | '/_protected/dashboard'
+    | '/_protected/my-jobs'
     | '/_protected/profile'
     | '/admin/activity'
     | '/admin/feedback'
@@ -430,6 +442,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedProfileRouteImport
       parentRoute: typeof ProtectedRoute
     }
+    '/_protected/my-jobs': {
+      id: '/_protected/my-jobs'
+      path: '/my-jobs'
+      fullPath: '/my-jobs'
+      preLoaderRoute: typeof ProtectedMyJobsRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
     '/_protected/dashboard': {
       id: '/_protected/dashboard'
       path: '/dashboard'
@@ -457,12 +476,14 @@ declare module '@tanstack/react-router' {
 interface ProtectedRouteChildren {
   ProtectedAccountRoute: typeof ProtectedAccountRoute
   ProtectedDashboardRoute: typeof ProtectedDashboardRoute
+  ProtectedMyJobsRoute: typeof ProtectedMyJobsRoute
   ProtectedProfileRoute: typeof ProtectedProfileRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedAccountRoute: ProtectedAccountRoute,
   ProtectedDashboardRoute: ProtectedDashboardRoute,
+  ProtectedMyJobsRoute: ProtectedMyJobsRoute,
   ProtectedProfileRoute: ProtectedProfileRoute,
 }
 

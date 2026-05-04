@@ -21,6 +21,7 @@ export type JobsFilters = {
   salaryPresent: "all" | "true" | "false";
   country: string;
   minScore: string;
+  maxScore: string;
   publishedFrom: string;
   postedWithinHours: string;
   sort: JobsSort;
@@ -47,9 +48,35 @@ export type JobListItem = {
   tech_stack: string[];
   salary_range: { raw?: string | null; min?: number | null; max?: number | null };
   signals: Record<string, unknown>;
-  match: { score?: number | null; level?: string | null; rejected?: boolean | null };
+  match: {
+    score?: number | null;
+    level?: string | null;
+    rejected?: boolean | null;
+    reasons?: string[];
+    warnings?: string[];
+    skill_hits?: string[];
+    missing_skills?: string[];
+  };
   semantic_similarity: number | null;
   description_preview: string;
+  user_job?: {
+    clicked_at: string | null;
+    dismissed_at: string | null;
+    last_visited_at: string | null;
+  };
+};
+
+export type JobDetail = JobListItem & {
+  description_text?: string;
+  description_raw?: string;
+  employment_types?: string[];
+  employer_logo?: string | null;
+  employer_website?: string | null;
+  apply_options?: Array<{
+    apply_link?: string | null;
+    is_direct?: boolean | null;
+    publisher?: string | null;
+  }>;
 };
 
 export type JobsListResponse = {

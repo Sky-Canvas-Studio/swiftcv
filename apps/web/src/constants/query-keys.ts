@@ -60,4 +60,8 @@ export const queryKeys = {
   invitations: {
     detail: (invitationId: string) => ["invitation", invitationId] as const,
   },
+  jobs: {
+    my: (params: Record<string, unknown>) => ["my-jobs", params] as const,
+    detail: (params: Record<string, unknown>) => ["my-job-detail", params] as const,
+  },
 } as const;

@@ -16,6 +16,7 @@ import { adminWebhooksController } from "./admin/webhooks/webhooks.controller";
 import { profileController } from "./profile/profile.controller";
 import { adminMonitoringController } from "./admin/monitoring/monitoring.controller";
 import { adminJobsController } from "./admin/jobs/jobs.controller";
+import { jobsController } from "./jobs/jobs.controller";
 
 export const app = new Elysia()
   .use(authController)
@@ -30,6 +31,7 @@ export const app = new Elysia()
   .use(adminWebhooksController)
   .use(adminMonitoringController)
   .use(adminJobsController)
+  .use(jobsController)
   .use(profileController)
   .use(notificationsController)
   .use(feedbackController)

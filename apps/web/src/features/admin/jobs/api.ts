@@ -14,7 +14,7 @@ export async function fetchAdminJobs(filters: JobsFilters) {
   return jobsListSchema.parse(parseMaybeJson(data));
 }
 
-function buildJobsQuery(filters: JobsFilters) {
+export function buildJobsQuery(filters: JobsFilters) {
   return compact({
     page: filters.page,
     per_page: filters.perPage,
@@ -30,6 +30,7 @@ function buildJobsQuery(filters: JobsFilters) {
       filters.salaryPresent === "all" ? undefined : filters.salaryPresent === "true",
     country: filters.country,
     min_score: filters.minScore ? Number(filters.minScore) : undefined,
+    max_score: filters.maxScore ? Number(filters.maxScore) : undefined,
     published_from: toIsoStart(filters.publishedFrom),
     posted_within_hours: filters.postedWithinHours
       ? Number(filters.postedWithinHours)

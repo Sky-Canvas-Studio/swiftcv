@@ -24,6 +24,7 @@ model User {
   notifications      Notification[]
   feedbacks          Feedback[]
   resumeProfile      ResumeProfile?
+  jobInteractions    UserJobInteraction[]
   actedActivityEvents ActivityEvent[] @relation("ActivityEventActor")
   targetedActivityEvents ActivityEvent[] @relation("ActivityEventTarget")
 

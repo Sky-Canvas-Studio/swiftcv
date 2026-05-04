@@ -23,6 +23,7 @@ import {
   User as UserIcon,
   ChevronRight,
   IdCard,
+  BriefcaseBusiness,
 } from "lucide-react";
 import UserMenu from "@/components/core/user-menu";
 import { ThemeToggle } from "@/components/core/theme-toggle";
@@ -59,6 +60,11 @@ const navItems = [
     title: "Profile",
     icon: IdCard,
     url: "/profile",
+  },
+  {
+    title: "My Jobs",
+    icon: BriefcaseBusiness,
+    url: "/my-jobs",
   },
   {
     title: "Account",

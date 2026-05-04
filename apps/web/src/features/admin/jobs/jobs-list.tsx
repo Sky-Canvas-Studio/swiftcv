@@ -26,7 +26,7 @@ export function JobsList(props: {
         <div>
           <CardTitle className="text-base">Jobs</CardTitle>
           <p className="text-sm text-muted-foreground">
-            {meta ? `${meta.total} jobs matched` : "Loading jobs"}
+            {meta ? `${meta.total} jobs` : "Loading jobs"}
           </p>
         </div>
         <p className="text-xs text-muted-foreground">

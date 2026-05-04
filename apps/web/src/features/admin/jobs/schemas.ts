@@ -32,6 +32,11 @@ const jobItemSchema = z.object({
   match: z.record(z.string(), z.unknown()).nullish().default({}),
   semantic_similarity: z.number().nullish().default(null),
   description_preview: z.string().default(""),
+  user_job: z.object({
+    clicked_at: z.string().nullish().default(null),
+    dismissed_at: z.string().nullish().default(null),
+    last_visited_at: z.string().nullish().default(null),
+  }).nullish(),
 });
 
 export const jobsListSchema = z.object({
@@ -46,4 +51,13 @@ export const jobsListSchema = z.object({
     sort: z.string(),
     filters: z.record(z.string(), z.unknown()).default({}),
   }),
+});
+
+export const jobDetailSchema = jobItemSchema.extend({
+  description_text: z.string().nullish().default(""),
+  description_raw: z.string().nullish().default(""),
+  employment_types: z.array(z.string()).nullish().default([]),
+  employer_logo: z.string().nullish().default(null),
+  employer_website: z.string().nullish().default(null),
+  apply_options: z.array(z.record(z.string(), z.unknown())).nullish().default([]),
 });

@@ -23,6 +23,7 @@ const DEFAULT_FILTERS: JobsFilters = {
   salaryPresent: "all",
   country: "",
   minScore: "",
+  maxScore: "",
   publishedFrom: "",
   postedWithinHours: "",
   sort: "published_at_desc",
@@ -51,10 +52,10 @@ export function AdminJobsPage() {
             <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">Jobs</h1>
           </div>
           <p className="text-sm text-muted-foreground">
-            Browse Joblake jobs through the server proxy with search, skills, score, and date filters.
+            Browse every Joblake job with search, skills, score, and date filters.
           </p>
         </div>
-        <Badge variant="secondary">{data?.meta.total ?? 0} matched</Badge>
+        <Badge variant="secondary">{data?.meta.total ?? 0} jobs</Badge>
       </div>
 
       <Metrics data={data} loading={isLoading} />
@@ -86,14 +87,14 @@ export function AdminJobsPage() {
 function Metrics(props: { data: Awaited<ReturnType<typeof fetchAdminJobs>> | undefined; loading: boolean }) {
   const items = props.data?.items ?? [];
   const remote = items.filter((job) => job.is_remote).length;
-  const strong = items.filter((job) => (job.match.score ?? 0) >= 75).length;
+  const scored = items.filter((job) => typeof job.match.score === "number").length;
   const semantic = items.filter((job) => typeof job.semantic_similarity === "number").length;
 
   return (
     <div className="grid gap-3 sm:grid-cols-3">
       <Metric label="Visible" value={props.loading ? "..." : String(items.length)} />
       <Metric label="Remote" value={String(remote)} />
-      <Metric label="Strong matches" value={String(strong || semantic)} />
+      <Metric label="Scored" value={String(scored || semantic)} />
     </div>
   );
 }
